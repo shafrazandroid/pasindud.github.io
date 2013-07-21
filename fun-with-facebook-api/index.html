@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	  <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.increment people.append people.track_charge".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||
+[]);
+mixpanel.init("fe7ac636a547077c2060411ddd82f09e");</script><!-- end Mixpanel -->
+	  
+    <meta charset="utf-8">
+    <title>Fun With Facebook Api</title>
+    <meta name="author" content="Pasindu De Silva">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/twitter/stylesheets/bootstrap.min.css?0.16667311005422425" type="text/css" rel="stylesheet" media="all">
+<link href="/assets/twitter/stylesheets/style.css?0.3671075808080143" type="text/css" rel="stylesheet" media="all">
+<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css?0.6153596282050157" type="text/css" rel="stylesheet" media="all">
+
+ 
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  <style>
+  p{color:#F2F2F2; font-size:14px;}
+  </style>
+  </head>
+  <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+      	<!----     <a class="brand" href="/">Pasindu's Blog</a>	--->
+          <a class="brand" href="/" style="text-align:center;">  Pasindu De Silva Blog</a>
+          <ul class="nav">
+		  
+			<!----   
+              
+                <li><a href="/archive">Archive</a></li>
+
+              
+                <li><a href="/tags">Tags</a></li>
+
+              
+                <li><a href="/categories">Categories</a></li>
+
+              
+                <li><a href="/pages">Pages</a></li>
+
+              
+                <li><a href="/about">About Me</a></li>
+			
+			--->
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        <div class="page-header">
+  <h1>Fun With Facebook Api </h1>
+</div>
+
+<script>
+  $(document).ready(function() {
+ mixpanel.track("Fun With Facebook Api"); 
+	
+  });
+</script>
+
+<div class="row">
+  <div class="span8" style="width:100%; " >
+    <p>I had previously used the facebook api for general purpose but not like what I did today. I wanted to compile a statitscs on group members. </p>
+
+<h4 id="toc_0">I wanted to calculate</h4>
+
+<ul>
+<li><p>How much the member liked - eg - [ I like your post  ]</p></li>
+<li><p>How much the users post was like -   [ You like my post  ]</p></li>
+<li><p>How much messages the user posted on the group - [ Me posting a new message on the group ]</p></li>
+<li><p>How much comments did the member post - [ Me  commenting on your post ]</p></li>
+<li><p>How much members posted comments on the users post - [ You  commenting on my post ]</p></li>
+<li><p>How much pictures have you posted to the group -[ Me posting a picture to the group ]</p></li>
+</ul>
+
+<p>Before the start I it was bit trick parsing the JSON file with multiple titles. </p>
+
+<p>. . .</p>
+
+<p>I used facebook&#39;s graph API to do this, to get group post you must give the app access to your group permission , if you give it, it is fair to say the app knows what 
+ever you or any of the members of the group dose, and it takes only one person to let it in.</p>
+
+<h3 id="toc_1">It has access  -</h3>
+
+<ul>
+<li><p>What you post on the group.</p></li>
+<li><p>What other members post on the group.</p></li>
+<li><p>The comments you post.</p></li>
+<li><p>The comments other members post.</p></li>
+<li><p>Pictures you post.</p></li>
+<li><p>Pictures others post.</p></li>
+<li><p>Your likes.</p></li>
+<li><p>Other members likes.</p></li>
+</ul>
+
+<h4 id="toc_2">And Many Many More !!! It knows what ever you do better than you.</h4>
+
+<ul>
+<li>  First I got the member list of the group and stored easy nop !</li>
+<li>  Then got all pictures posted on the group and there links.</li>
+<li><p>Then messages posted on the group which is fairly easy to parase.</p></li>
+<li><p>But then you have comments that is the not so easy !!
+It has many level of parasing , first you have the message you post on and the who posted it.</p></li>
+</ul>
+
+<p>This is how I parased it , this gives the name of the who posted.</p>
+
+<pre><code>    [&#39;feed&#39;][&#39;data&#39;][&#39;ori_message&#39;][&#39;comments&#39;][&#39;data&#39;][&#39;comment&#39;][&#39;from&#39;][&#39;name&#39;]
+</code></pre>
+
+<p>Below is the php source to parase it.</p>
+
+<pre><code>     if(array_key_exists(&#39;comments&#39;, $data)==false)
+     {
+        // This display the comment ID which was deleted by the user
+        // It is just a reference there is no messae there.
+
+        echo &quot; Error comments &quot;.$post_id.&quot; &quot;.$data[&#39;updated_time&#39;];
+
+    }
+    else
+    {
+                $comment_wrapper2=$data[&#39;comments&#39;][&#39;data&#39;];
+
+                    foreach ($comment_wrapper2 as $data2) {
+
+                                $user=$data2[&#39;from&#39;][&#39;name&#39;];
+                                $user_id=$data2[&#39;from&#39;][&#39;id&#39;];
+
+                                $created_time=$data2[&#39;created_time&#39;];
+                                $like_count= $data2[&#39;like_count&#39;];
+                                $message= $data2[&#39;message&#39;];
+                                $com_id= $data2[&#39;id&#39;];
+
+                    }
+    }
+</code></pre>
+
+<p>Due to many complication I did not get the details on who liked your comment ( may be there is someone who always like your comment will never know still )
+if i implemented that also them json would look something like this. </p>
+
+<pre><code>    [&#39;feed&#39;][&#39;data&#39;][&#39;ori_message&#39;][&#39;comments&#39;][&#39;data&#39;][&#39;comment&#39;][&#39;from&#39;][&#39;name&#39;][&#39;data&#39;][&#39;like&#39;][&#39;from&#39;][&#39;name&#39;] 
+</code></pre>
+
+<ul>
+<li><p>After that was over I had to fetch data and count them.</p></li>
+<li><p>Everythings there was easy except comments because when your counting the number of comments for example comments on my post, you cannot add the number of comments 
+I post on my comment. Query that data is bit hard to accomplish.</p></li>
+<li><p>I am trying to built it so that any one can get access to that data and view the stats and may be make there own stats.</p></li>
+</ul>
+
+    <hr>
+    <div class="pagination">
+      <ul>
+        <ul>
+            <li class="prev"><a href="/share-it" title="Share It">&larr; Previous</a></li>
+
+            <li><a href="/archive">Archive</a></li>
+
+            <li class="next disabled"><a>Next &rarr;</a>
+        </ul>
+      </ul>
+    </div>
+    <hr>
+    <div id="disqus_thread"></div>
+<script>
+    var disqus_developer = 1;
+    var disqus_shortname = 'pasindudblog'; // required: replace example with your forum shortname
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+  
+  
+ <!-----
+  <div class="span4" style="width:220px; border-left:#fff dashed 1px; padding-left:10px;">
+    <h4>Published</h4>
+    <div class="date"><span>2012-12-29</span></div>
+    <br>
+    <h4  algin="center">Me</h4>
+    <img src="/assets/media/images/profile.jpg"></img>
+    <br>
+    <h4>Tags</h4>
+    <ul class="tag_box">
+    </ul>
+  </div>----->
+
+  
+</div>
+
+      </div>
+
+      <footer>
+        <p>&copy; Pasindu De Silva 2012 
+        
+        </p>
+      </footer>
+
+	  
+
+	  
+    </div> <!-- /container -->
+
+    
+    <script>
+  var _gaq=[['_setAccount','UA-123-12'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+  </body>
+</html>

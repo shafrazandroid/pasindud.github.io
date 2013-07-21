@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+  <channel>
+    <title>Pasindu's Blog</title>
+    <link>http://pasindu.us/experiment/ruhoh</link>
+    <pubDate>2013-01-04 18:45:31 +0530</pubDate>
+    <item>
+      <title>Fun With Facebook Api</title>
+      <link>http://pasindu.us/experiment/ruhoh/fun-with-facebook-api</link>
+      <pubDate>2012-12-29</pubDate>
+      <description>&lt;p&gt;I had previously used the facebook api for general purpose but not like what I did today. I wanted to compile a statitscs on group members. &lt;/p&gt;
+
+&lt;h4 id="toc_0"&gt;I wanted to calculate&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;How much the member liked - eg - [ I like your post  ]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How much the users post was like -   [ You like my post  ]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How much messages the user posted on the group - [ Me posting a new message on the group ]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How much comments did the member post - [ Me  commenting on your post ]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How much members posted comments on the users post - [ You  commenting on my post ]&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;How much pictures have you posted to the group -[ Me posting a picture to the group ]&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Before the start I it was bit trick parsing the JSON file with multiple titles. &lt;/p&gt;
+
+&lt;p&gt;. . .&lt;/p&gt;
+
+&lt;p&gt;I used facebook&amp;#39;s graph API to do this, to get group post you must give the app access to your group permission , if you give it, it is fair to say the app knows what 
+ever you or any of the members of the group dose, and it takes only one person to let it in.&lt;/p&gt;
+
+&lt;h3 id="toc_1"&gt;It has access  -&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;What you post on the group.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What other members post on the group.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The comments you post.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The comments other members post.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Pictures you post.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Pictures others post.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Your likes.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Other members likes.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="toc_2"&gt;And Many Many More !!! It knows what ever you do better than you.&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  First I got the member list of the group and stored easy nop !&lt;/li&gt;
+&lt;li&gt;  Then got all pictures posted on the group and there links.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Then messages posted on the group which is fairly easy to parase.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;But then you have comments that is the not so easy !!
+It has many level of parasing , first you have the message you post on and the who posted it.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is how I parased it , this gives the name of the who posted.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    [&amp;#39;feed&amp;#39;][&amp;#39;data&amp;#39;][&amp;#39;ori_message&amp;#39;][&amp;#39;comments&amp;#39;][&amp;#39;data&amp;#39;][&amp;#39;comment&amp;#39;][&amp;#39;from&amp;#39;][&amp;#39;name&amp;#39;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Below is the php source to parase it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     if(array_key_exists(&amp;#39;comments&amp;#39;, $data)==false)
+     {
+        // This display the comment ID which was deleted by the user
+        // It is just a reference there is no messae there.
+
+        echo &amp;quot; Error comments &amp;quot;.$post_id.&amp;quot; &amp;quot;.$data[&amp;#39;updated_time&amp;#39;];
+
+    }
+    else
+    {
+                $comment_wrapper2=$data[&amp;#39;comments&amp;#39;][&amp;#39;data&amp;#39;];
+
+                    foreach ($comment_wrapper2 as $data2) {
+
+                                $user=$data2[&amp;#39;from&amp;#39;][&amp;#39;name&amp;#39;];
+                                $user_id=$data2[&amp;#39;from&amp;#39;][&amp;#39;id&amp;#39;];
+
+                                $created_time=$data2[&amp;#39;created_time&amp;#39;];
+                                $like_count= $data2[&amp;#39;like_count&amp;#39;];
+                                $message= $data2[&amp;#39;message&amp;#39;];
+                                $com_id= $data2[&amp;#39;id&amp;#39;];
+
+                    }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Due to many complication I did not get the details on who liked your comment ( may be there is someone who always like your comment will never know still )
+if i implemented that also them json would look something like this. &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    [&amp;#39;feed&amp;#39;][&amp;#39;data&amp;#39;][&amp;#39;ori_message&amp;#39;][&amp;#39;comments&amp;#39;][&amp;#39;data&amp;#39;][&amp;#39;comment&amp;#39;][&amp;#39;from&amp;#39;][&amp;#39;name&amp;#39;][&amp;#39;data&amp;#39;][&amp;#39;like&amp;#39;][&amp;#39;from&amp;#39;][&amp;#39;name&amp;#39;] 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;After that was over I had to fetch data and count them.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Everythings there was easy except comments because when your counting the number of comments for example comments on my post, you cannot add the number of comments 
+I post on my comment. Query that data is bit hard to accomplish.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I am trying to built it so that any one can get access to that data and view the stats and may be make there own stats.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    <item>
+      <title>Share It</title>
+      <link>http://pasindu.us/experiment/ruhoh/share-it</link>
+      <pubDate>2012-12-27</pubDate>
+      <description>&lt;p&gt;This is suddenly came up with when my friends were on a quest to share thee movies and tv shows they have. 
+I may have only taken me 1 hours to devlope but took some time desiging
+Share it is a online movie / tv series sharing site. In context you may guess that when I say online sharing site you may think it is uploading videos but it is not.
+When you share it you share the name, season you got which you have downloaded, brought or stolen from someone. &lt;/p&gt;
+
+&lt;p&gt;You may think so what is the use of sharing if you can&amp;#39;t download
+it or watched. So if that is the question, I can ask you Why bother downloading and spend your bandwidth [ those days slt usage limit was no limit but now you have ]
+when you can ask your friend for the video either telling him to bring it on a pen drive or got to his home. &lt;/p&gt;
+
+&lt;p&gt;The site will show a list of video your friend you can select what you.
+No longer do you have to worry about downloading a camera copy of a movie and next day find tou that you best friend has a HD copy of the same thing.&lt;/p&gt;
+
+&lt;p&gt;Share it url : &lt;a href="http://pasindu.us/mov"&gt;http://pasindu.us/mov&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Go ahead and share want you got [ you will may be able to get a couple of bugs while sharing ]&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Online Snippets</title>
+      <link>http://pasindu.us/experiment/ruhoh/online-snippets</link>
+      <pubDate>2012-12-25</pubDate>
+      <description>&lt;p&gt;Currenly I am devoloping a online snippet safe form where you can type code online or maybe copy and save it online, the code editor is online is 
+fullscreen therefore there is distractions.I be using the laravel framework to do this project which is a really great framework and the Eloquent ORM with 
+it&amp;#39;s relationship functionalities makes life easy to the programmers to work with.&lt;/p&gt;
+
+&lt;h3 id="toc_0"&gt;Features&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;  Login&lt;/li&gt;
+&lt;li&gt;  Profile&lt;/li&gt;
+&lt;li&gt;  Public Codes&lt;/li&gt;
+&lt;li&gt;  Private Codes&lt;/li&gt;
+&lt;li&gt;  Online Code Editor&lt;/li&gt;
+&lt;li&gt; Quick save without needing to login&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hope fully I will be getting a chance to learn laravel more and more.&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>Start Blogging</title>
+      <link>http://pasindu.us/experiment/ruhoh/start-blogging</link>
+      <pubDate>2012-12-25</pubDate>
+      <description>&lt;p&gt;I been looking for a good blogging platform for a time now which is light wight with all options need and hopefully without any database attachted to.&lt;/p&gt;
+
+&lt;p&gt;Present blogging platforms like wordpress, druple and others are very capable and extensive they are also a bit of a pine to maintain
+due to database and the large code base. Jekyll is a great blogging system after it uses a templaing system markdown so you don&amp;#39;t have to type those tidious 
+html tags no longer. Jekyll also powers github pages and many other sites.&lt;/p&gt;
+
+&lt;p&gt;Duing this search i also found ruhoh which is also really great the slight best things is that it has a good cmd and help cmd when considering with jekyll i think which has non. You can also create post on using the cmd. I knew ruby coding was bit crazy &amp;quot; one function can be done in many ways &amp;quot; online when I looked at the gem file I found it out.
+For instance to find the lenght of the array you can do lenght , size or count. Apart from that understand the code than php which i really have worked with. I did a bit of a hacking to the ruhoh and customized the CLI , added some things to the help yml to include posts list, post count and some otheres, I also added some parameters to be passed when creating new posts.&lt;/p&gt;
+
+&lt;p&gt;There was a issuse on ruhoh to get the posts count I fixed it also, don&amp;#39;t really know how good the code is but end of the day it works. I am still bit trying to deploy ruhoh on heroku
+hopefully there will be some good documentation in the future&lt;/p&gt;
+
+&lt;p&gt;Github -:  &lt;a href="https://github.com/mojombo/jekyll"&gt;https://github.com/mojombo/jekyll&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+  </channel>
+</rss>

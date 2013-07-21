@@ -1,0 +1,62 @@
+---
+layout : default
+---
+<div class="page-header">
+  <h1>{{ page.title }} {{# page.tagline }} <small>{{ . }}</small>{{/ page.tagline }}</h1>
+</div>
+
+<script>
+  $(document).ready(function() {
+ mixpanel.track("{{ page.title }}"); 
+	
+  });
+</script>
+
+<div class="row">
+  <div class="span8" style="width:100%; " >
+    {{{ content }}}
+    <hr>
+    <div class="pagination">
+      <ul>
+        <ul>
+          {{# page?previous }}
+            <li class="prev"><a href="{{ url }}" title="{{ title }}">&larr; Previous</a></li>
+          {{/ page?previous }}
+          {{^ page?previous }}
+            <li class="prev disabled"><a>&larr; Previous</a></li>
+          {{/ page?previous }}
+
+            <li><a href="/archive">Archive</a></li>
+
+          {{# page?next }}
+            <li class="next"><a href="{{ url }}" title="{{ title }}">Next &rarr;</a></li>
+          {{/ page?next }}
+          {{^ page?next }}
+            <li class="next disabled"><a>Next &rarr;</a>
+          {{/ page?next }}
+        </ul>
+      </ul>
+    </div>
+    <hr>
+    {{{ comments }}}
+  </div>
+  
+  
+ <!-----
+  <div class="span4" style="width:220px; border-left:#fff dashed 1px; padding-left:10px;">
+    <h4>Published</h4>
+    <div class="date"><span>{{ page.date }}</span></div>
+    <br>
+    <h4  algin="center">Me</h4>
+    <img src="/assets/media/images/profile.jpg"></img>
+    <br>
+    <h4>Tags</h4>
+    <ul class="tag_box">
+    {{# page.tags?to_tags }}
+      {{> tags_list }}
+    {{/ page.tags?to_tags }}
+    </ul>
+  </div>----->
+
+  
+</div>

@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>start-blogging - Pasindu's Blog</title>
+  <title>Finch - Pasindu's Blog</title>
   <meta name="author" content="Pasindu De Silva">
 
   
-  <meta name="description" content="I been looking for a good blogging platform for a time now which is light wight with all options need and hopefully without any database attachted to &hellip;">
+  <meta name="description" content="*Github Ideamart SMS and USSD Testing Framework. When building a large sms App it is kind of hard to keep track of or functions because
+mostly it is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pasindu.us/start-blogging">
+  <link rel="canonical" href="http://blog.pasindu.us/finch">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pasindu's Blog" type="application/atom+xml">
@@ -80,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">Start-blogging</h1>
+      <h1 class="entry-title">Finch</h1>
     
     
       <p class="meta">
@@ -96,7 +97,7 @@
   
 
 
-<time datetime="2012-12-25T01:50:00+05:30" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
+<time datetime="2013-09-19T19:30:00+05:30" pubdate data-updated="true">Sep 19<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -105,28 +106,59 @@
   </header>
 
 
-<div class="entry-content"><p>I been looking for a good blogging platform for a time now which is light wight with all options need and hopefully without any database attachted to.</p>
+<div class="entry-content"><p>*<a href="https://github.com/pasindud/Finch">Github</a></p>
 
-<p>Present blogging platforms like wordpress, druple and others are very capable and extensive they are also a bit of a pine to maintain
-due to database and the large code base. Jekyll is a great blogging system after it uses a templating system markdown so you don&rsquo;t have
-to type those tedious
-html tags no longer. Jekyll also powers github pages and many other sites.</p>
+<p>Ideamart SMS and USSD Testing Framework. When building a large sms App it is kind of hard to keep track of or functions because
+mostly it is one big file there you need something some test to run and make sure you havent broken anything</p>
+
+<hr />
+
+<p><img src="http://s13.postimg.org/rbyudk0pz/tests.png" alt="Finch UI" /></p>
+
+<h3>Note</h3>
+
+<ul>
+<li>Test.php and testserver.php must be on the same folder.</li>
+<li>Goto index.html and link test.php to run the tests.</li>
+<li>App server URL is the test.php</li>
+</ul>
+
+
+<hr />
 
 <!--more-->
 
 
-<p>During this search i also found ruhoh which is also really great the slight best things is that it has a good cmd and help cmd when considering with
- jekyll i think which has non. You can also create post on using the cmd. I knew ruby coding was bit crazy
- &ldquo; one function can be done in many ways &rdquo; online when I looked at the gem file I found it out.
-For instance to find the length of the array you can do length , size or count. Apart from that understand the code than php which i really have worked
-with. I did a bit of a hacking to the ruhoh and customized the CLI , added some things to the help yml to include posts list, post count and some
-others, I also added some parameters to be passed when creating new posts.</p>
+<h4>Tests</h4>
 
-<p>There was a issues on ruhoh to get the posts count I fixed it also, don&rsquo;t really know how good the code is but end of the day it works.
-I am still bit trying to deploy ruhoh on heroku
-hopefully there will be some good documentation in the future</p>
+<pre><code>    //Create Finch
 
-<p>Github &ndash;:  <a href="https://github.com/mojombo/jekyll">https://github.com/mojombo/jekyll</a></p>
+    $opt=new Finch(App Url,App ID);
+
+    Eg-:
+        $opt=new Finch('http://localhost/dialog/listener.php', 'APP_000001');
+
+
+    // Create SMS Tests
+     $optsms-&gt;assertmatchsms(Test Name,Message Sent,Message Expected);
+
+     Eg-:
+        $optsms-&gt;assertmatchsms("First Message","hi start","This message is sent only to one user");
+
+
+    // Create USSD Tests
+    $optsms-&gt;assertmatchsms(Test Name,Message Sent,Message Expected,ussdoperation);
+
+    Eg-:
+        $optussd-&gt;assertmatchussd("Main Menu",'123','1. One 2. Two 99. Exit','mo-init');
+
+
+    // Create Custom Tests
+    $optussd-&gt;customTest(Test Name , Test Message, Test True for passes );
+
+    Eg -:
+        $optussd-&gt;customTest("Test DB","Test Works","false");
+</code></pre>
 </div>
 
 
@@ -149,7 +181,7 @@ hopefully there will be some good documentation in the future</p>
   
 
 
-<time datetime="2012-12-25T01:50:00+05:30" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
+<time datetime="2013-09-19T19:30:00+05:30" pubdate data-updated="true">Sep 19<span>th</span>, 2013</time>
       
 
 
@@ -157,7 +189,7 @@ hopefully there will be some good documentation in the future</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pasindu.us/start-blogging/" data-via="ghosteyes1" data-counturl="http://blog.pasindu.us/start-blogging/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pasindu.us/finch/" data-via="ghosteyes1" data-counturl="http://blog.pasindu.us/finch/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -170,8 +202,8 @@ hopefully there will be some good documentation in the future</p>
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/idea-group-simulator/" title="Previous Post: Idea Group Simulator">&laquo; Idea Group Simulator</a>
       
-        <a class="basic-alignment right" href="/online-snippets/" title="Next Post: online-snippets">online-snippets &raquo;</a>
       
     </p>
   </footer>
@@ -285,8 +317,8 @@ hopefully there will be some good documentation in the future</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.pasindu.us/start-blogging/';
-        var disqus_url = 'http://blog.pasindu.us/start-blogging/';
+        var disqus_identifier = 'http://blog.pasindu.us/finch/';
+        var disqus_url = 'http://blog.pasindu.us/finch/';
         var disqus_script = 'embed.js';
       
     (function () {

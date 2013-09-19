@@ -1,170 +1,337 @@
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-  	  <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
-typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.increment people.append people.track_charge".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||
-[]);
-mixpanel.init("fe7ac636a547077c2060411ddd82f09e");</script><!-- end Mixpanel -->
-	  
-    <meta charset="utf-8">
-    <title>Online Snippets</title>
-    <meta name="author" content="Pasindu De Silva">
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>online-snippets - Pasindu's Blog</title>
+  <meta name="author" content="Pasindu De Silva">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+  
+  <meta name="description" content="Currently I am developing a online snippet safe form where you can type code online Zor maybe copy and save it online, the code editor is online is &hellip;">
+  
 
-    <!-- Le styles -->
-    <link href="/assets/twitter/stylesheets/bootstrap.min.css?0.21112282375739932" type="text/css" rel="stylesheet" media="all">
-<link href="/assets/twitter/stylesheets/style.css?0.7297248571835038" type="text/css" rel="stylesheet" media="all">
-<link href="/assets/twitter/widgets/google_prettify/stylesheets/twitter-bootstrap.css?0.032935222199032" type="text/css" rel="stylesheet" media="all">
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
- 
+  
+  <link rel="canonical" href="http://blog.pasindu.us/online-snippets">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Pasindu's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
-    <!-- Le fav and touch icons -->
-  <!-- Update these with your own images
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-  -->
-  <style>
-  p{color:#F2F2F2; font-size:14px;}
-  </style>
-  </head>
-  <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
 
-  <body>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43258168-1']);
+    _gaq.push(['_trackPageview']);
 
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-      	<!----     <a class="brand" href="/">Pasindu's Blog</a>	--->
-          <a class="brand" href="/" style="text-align:center;">  Pasindu De Silva Blog</a>
-          <ul class="nav">
-		  
-			<!----   
-              
-                <li><a href="/archive">Archive</a></li>
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 
-              
-                <li><a href="/tags">Tags</a></li>
 
-              
-                <li><a href="/categories">Categories</a></li>
+</head>
 
-              
-                <li><a href="/pages">Pages</a></li>
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
 
-              
-                <li><a href="/about">About Me</a></li>
-			
-			--->
-
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-
-      <div class="content">
-        <div class="page-header">
-  <h1>Online Snippets </h1>
-</div>
-
-<script>
-  $(document).ready(function() {
- mixpanel.track("Online Snippets"); 
-	
-  });
-</script>
-
-<div class="row">
-  <div class="span8" style="width:100%; " >
-    <p>Currenly I am devoloping a online snippet safe form where you can type code online or maybe copy and save it online, the code editor is online is 
-fullscreen therefore there is distractions.I be using the laravel framework to do this project which is a really great framework and the Eloquent ORM with 
-it&#39;s relationship functionalities makes life easy to the programmers to work with.</p>
-
-<h3 id="toc_0">Features</h3>
-
-<ul>
-<li>  Login</li>
-<li>  Profile</li>
-<li>  Public Codes</li>
-<li>  Private Codes</li>
-<li>  Online Code Editor</li>
-<li> Quick save without needing to login</li>
+</header>
+  <!-- <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="pasindud@gmail.com" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.pasindu.us" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
 </ul>
 
+</nav> -->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Online-snippets</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-25T23:31:00+05:30" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Currently I am developing a online snippet safe form where you can type code online Zor maybe copy and save it online, the code editor is online is
+fullscreen therefore there is distractions.I be using the laravel framework to do this project which is a really great framework and the Eloquent ORM with
+it&rsquo;s relationship functionalities makes life easy to the programmers to work with.</p>
+
+<!--more-->
+
+
+<h3>Features</h3>
+
+<ul>
+<li>Login</li>
+<li>Profile</li>
+<li>Public Codes</li>
+<li>Private Codes</li>
+<li>Online Code Editor</li>
+<li>Quick save without needing to login</li>
+</ul>
+
+
 <p>Hope fully I will be getting a chance to learn laravel more and more.</p>
+</div>
 
-    <hr>
-    <div class="pagination">
-      <ul>
-        <ul>
-            <li class="prev"><a href="/start-blogging" title="Start Blogging">&larr; Previous</a></li>
 
-            <li><a href="/archive">Archive</a></li>
+  <footer>
+    <p class="meta">
+      
+  
 
-            <li class="next"><a href="/share-it" title="Share It">Next &rarr;</a></li>
-        </ul>
-      </ul>
-    </div>
-    <hr>
-    <div id="disqus_thread"></div>
-<script>
-    var disqus_developer = 1;
-    var disqus_shortname = 'pasindudblog'; // required: replace example with your forum shortname
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+<span class="byline author vcard">Posted by <span class="fn">Pasindu De Silva</span></span>
 
-  </div>
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-25T23:31:00+05:30" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pasindu.us/online-snippets/" data-via="ghosteyes1" data-counturl="http://blog.pasindu.us/online-snippets/" >Tweet</a>
   
   
- <!-----
-  <div class="span4" style="width:220px; border-left:#fff dashed 1px; padding-left:10px;">
-    <h4>Published</h4>
-    <div class="date"><span>2012-12-25</span></div>
-    <br>
-    <h4  algin="center">Me</h4>
-    <img src="/assets/media/images/profile.jpg"></img>
-    <br>
-    <h4>Tags</h4>
-    <ul class="tag_box">
-    </ul>
-  </div>----->
-
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
   
 </div>
 
-      </div>
-
-      <footer>
-        <p>&copy; Pasindu De Silva 2012 
-        
-        </p>
-      </footer>
-
-	  
-
-	  
-    </div> <!-- /container -->
-
     
-    <script>
-  var _gaq=[['_setAccount','UA-123-12'],['_trackPageview']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,'script'));
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/start-blogging/" title="Previous Post: start-blogging">&laquo; start-blogging</a>
+      
+      
+        <a class="basic-alignment right" href="/share-it/" title="Next Post: share-it">share-it &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <ul id="recent_posts">
+      <li class="post">
+      <a href="http://blog.pasindu.us" alt="Home"><img src="/images/Home.png"></a>
+      <a href="http://blog.pasindu.us/archives/" alt="Archives"><img src="/images/Calendar.png"></a>
+      <a href="mailto:pasindud@gmail.com" alt="E-Mail"><img src="/images/Envelope.png"></a>
+      <a href="http://blog.pasindu.us/atom.xml" alt="subscribe feed"><img src="/images/rss_big.png"></a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/finch/">Finch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/idea-group-simulator/">Idea Group Simulator</a>
+      </li>
+    
+      <li class="post">
+        <a href="/nodebb/">NodeBB</a>
+      </li>
+    
+      <li class="post">
+        <a href="/geek-me/">Geek Me ( About Me )</a>
+      </li>
+    
+      <li class="post">
+        <a href="/c-ascii-text/">C Ascii Text</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/pasindud">@pasindud</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'pasindud',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/107016732778776170349?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Pasindu De Silva -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'pasindusblogging';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.pasindu.us/online-snippets/';
+        var disqus_url = 'http://blog.pasindu.us/online-snippets/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
 </script>
-  </body>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
 </html>

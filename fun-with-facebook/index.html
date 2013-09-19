@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>start-blogging - Pasindu's Blog</title>
+  <title>fun with facebook - Pasindu's Blog</title>
   <meta name="author" content="Pasindu De Silva">
 
   
-  <meta name="description" content="I been looking for a good blogging platform for a time now which is light wight with all options need and hopefully without any database attachted to &hellip;">
+  <meta name="description" content="I had previously used the facebook api for general purpose but not like what I did today. I wanted to compile a statistics on group members. I wanted &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.pasindu.us/start-blogging">
+  <link rel="canonical" href="http://blog.pasindu.us/fun-with-facebook">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Pasindu's Blog" type="application/atom+xml">
@@ -80,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">Start-blogging</h1>
+      <h1 class="entry-title">Fun With Facebook</h1>
     
     
       <p class="meta">
@@ -96,7 +96,7 @@
   
 
 
-<time datetime="2012-12-25T01:50:00+05:30" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
+<time datetime="2012-12-29T01:54:00+05:30" pubdate data-updated="true">Dec 29<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -105,28 +105,101 @@
   </header>
 
 
-<div class="entry-content"><p>I been looking for a good blogging platform for a time now which is light wight with all options need and hopefully without any database attachted to.</p>
+<div class="entry-content"><p>I had previously used the facebook api for general purpose but not like what I did today. I wanted to compile a statistics on group members.</p>
 
-<p>Present blogging platforms like wordpress, druple and others are very capable and extensive they are also a bit of a pine to maintain
-due to database and the large code base. Jekyll is a great blogging system after it uses a templating system markdown so you don&rsquo;t have
-to type those tedious
-html tags no longer. Jekyll also powers github pages and many other sites.</p>
+<h4>I wanted to calculate</h4>
+
+<ul>
+<li><p>How much the member liked &ndash; eg &ndash; [ I like your post  ]</p></li>
+<li><p>How much the users post was like &ndash;   [ You like my post  ]</p></li>
+<li><p>How much messages the user posted on the group &ndash; [ Me posting a new message on the group ]</p></li>
+<li><p>How much comments did the member post &ndash; [ Me  commenting on your post ]</p></li>
+<li><p>How much members posted comments on the users post &ndash; [ You  commenting on my post ]</p></li>
+<li><p>How much pictures have you posted to the group &ndash;[ Me posting a picture to the group ]</p></li>
+</ul>
+
 
 <!--more-->
 
 
-<p>During this search i also found ruhoh which is also really great the slight best things is that it has a good cmd and help cmd when considering with
- jekyll i think which has non. You can also create post on using the cmd. I knew ruby coding was bit crazy
- &ldquo; one function can be done in many ways &rdquo; online when I looked at the gem file I found it out.
-For instance to find the length of the array you can do length , size or count. Apart from that understand the code than php which i really have worked
-with. I did a bit of a hacking to the ruhoh and customized the CLI , added some things to the help yml to include posts list, post count and some
-others, I also added some parameters to be passed when creating new posts.</p>
+<p>Before the start I it was bit trick parsing the JSON file with multiple titles.</p>
 
-<p>There was a issues on ruhoh to get the posts count I fixed it also, don&rsquo;t really know how good the code is but end of the day it works.
-I am still bit trying to deploy ruhoh on heroku
-hopefully there will be some good documentation in the future</p>
+<p>&hellip;</p>
 
-<p>Github &ndash;:  <a href="https://github.com/mojombo/jekyll">https://github.com/mojombo/jekyll</a></p>
+<p>I used facebook&rsquo;s graph API to do this, to get group post you must give the app access to your group permission , if you give it, it is fair to say the app knows what
+ever you or any of the members of the group dose, and it takes only one person to let it in.</p>
+
+<h3>It has access  &ndash;</h3>
+
+<ul>
+<li><p>What you post on the group.</p></li>
+<li><p>What other members post on the group.</p></li>
+<li><p>The comments you post.</p></li>
+<li><p>The comments other members post.</p></li>
+<li><p>Pictures you post.</p></li>
+<li><p>Pictures others post.</p></li>
+<li><p>Your likes.</p></li>
+<li><p>Other members likes.</p></li>
+</ul>
+
+
+<h4>And Many Many More !!! It knows what ever you do better than you.</h4>
+
+<ul>
+<li>First I got the member list of the group and stored easy no pro !</li>
+<li>Then got all pictures posted on the group and there links.</li>
+<li><p>Then messages posted on the group which is fairly easy to parase.</p></li>
+<li><p>But then you have comments that is the not so easy !!
+It has many level of parasing , first you have the message you post on and the who posted it.</p></li>
+</ul>
+
+
+<p>This is how I parased it , this gives the name of the who posted.</p>
+
+<pre><code>    ['feed']['data']['ori_message']['comments']['data']['comment']['from']['name']
+</code></pre>
+
+<p>Below is the php source to parase it.</p>
+
+<pre><code>     if(array_key_exists('comments', $data)==false)
+     {
+        // This display the comment ID which was deleted by the user
+        // It is just a reference there is no messae there.
+
+        echo " Error comments ".$post_id." ".$data['updated_time'];
+
+    }
+    else
+    {
+                $comment_wrapper2=$data['comments']['data'];
+
+                    foreach ($comment_wrapper2 as $data2) {
+
+                                $user=$data2['from']['name'];
+                                $user_id=$data2['from']['id'];
+
+                                $created_time=$data2['created_time'];
+                                $like_count= $data2['like_count'];
+                                $message= $data2['message'];
+                                $com_id= $data2['id'];
+
+                    }
+    }
+</code></pre>
+
+<p>Due to many complication I did not get the details on who liked your comment ( may be there is someone who always like your comment will never know still )
+if i implemented that also them json would look something like this.</p>
+
+<pre><code>    ['feed']['data']['ori_message']['comments']['data']['comment']['from']['name']['data']['like']['from']['name'] 
+</code></pre>
+
+<ul>
+<li><p>After that was over I had to fetch data and count them.</p></li>
+<li><p>Everythings there was easy except comments because when your counting the number of comments for example comments on my post, you cannot add the number of comments
+I post on my comment. Query that data is bit hard to accomplish.</p></li>
+<li><p>I am trying to built it so that any one can get access to that data and view the stats and may be make there own stats.</p></li>
+</ul>
+
 </div>
 
 
@@ -149,7 +222,7 @@ hopefully there will be some good documentation in the future</p>
   
 
 
-<time datetime="2012-12-25T01:50:00+05:30" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
+<time datetime="2012-12-29T01:54:00+05:30" pubdate data-updated="true">Dec 29<span>th</span>, 2012</time>
       
 
 
@@ -157,7 +230,7 @@ hopefully there will be some good documentation in the future</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pasindu.us/start-blogging/" data-via="ghosteyes1" data-counturl="http://blog.pasindu.us/start-blogging/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.pasindu.us/fun-with-facebook/" data-via="ghosteyes1" data-counturl="http://blog.pasindu.us/fun-with-facebook/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -170,8 +243,10 @@ hopefully there will be some good documentation in the future</p>
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/share-it/" title="Previous Post: share-it">&laquo; share-it</a>
       
-        <a class="basic-alignment right" href="/online-snippets/" title="Next Post: online-snippets">online-snippets &raquo;</a>
+      
+        <a class="basic-alignment right" href="/c-ascii-text/" title="Next Post: c ascii text">c ascii text &raquo;</a>
       
     </p>
   </footer>
@@ -285,8 +360,8 @@ hopefully there will be some good documentation in the future</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.pasindu.us/start-blogging/';
-        var disqus_url = 'http://blog.pasindu.us/start-blogging/';
+        var disqus_identifier = 'http://blog.pasindu.us/fun-with-facebook/';
+        var disqus_url = 'http://blog.pasindu.us/fun-with-facebook/';
         var disqus_script = 'embed.js';
       
     (function () {
